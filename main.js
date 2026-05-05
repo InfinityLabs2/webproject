@@ -165,4 +165,21 @@ document.addEventListener('DOMContentLoaded', () => {
             heroBg.style.backgroundPositionY = `calc(center + ${scrollY * 0.3}px)`;
         }, { passive: true });
     }
+    // ===== TESTIMONIAL SLIDER — pause on touch (mobile) =====
+    const sliderWrapper = document.getElementById('testimonialSlider');
+    const sliderTrack = document.getElementById('testimonialTrack');
+
+    if (sliderWrapper && sliderTrack) {
+        // Touch: tap to pause, tap again to resume
+        sliderWrapper.addEventListener('touchstart', () => {
+            sliderTrack.style.animationPlayState = 'paused';
+        }, { passive: true });
+
+        sliderWrapper.addEventListener('touchend', () => {
+            // Resume after a short delay so the user can read
+            setTimeout(() => {
+                sliderTrack.style.animationPlayState = 'running';
+            }, 2000);
+        }, { passive: true });
+    }
 });
